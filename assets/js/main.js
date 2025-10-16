@@ -467,4 +467,80 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // 初始化美食轮播
   initFoodCarousel();
+
+  // 初始化二维码功能
+  function initQRCode() {
+    const qrTrigger = document.querySelector('.qr-trigger');
+    const qrPopup = document.querySelector('.qr-popup');
+    
+    if (!qrTrigger || !qrPopup) return;
+
+    // 点击触发二维码显示/隐藏
+    qrTrigger.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const isVisible = qrPopup.style.opacity === '1';
+      
+      if (isVisible) {
+        hideQRPopup();
+      } else {
+        showQRPopup();
+      }
+    });
+
+    // 点击页面其他地方隐藏二维码
+    document.addEventListener('click', (e) => {
+      if (!qrTrigger.contains(e.target) && !qrPopup.contains(e.target)) {
+        hideQRPopup();
+      }
+    });
+
+    // ESC键隐藏二维码
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        hideQRPopup();
+      }
+    });
+
+    function showQRPopup() {
+      qrPopup.style.opacity = '1';
+      qrPopup.style.visibility = 'visible';
+      qrPopup.style.transform = 'translateY(0) scale(1)';
+      qrPopup.style.pointerEvents = 'auto';
+      
+      // 添加动画类
+      qrPopup.classList.add('qr-popup--active');
+    }
+
+    function hideQRPopup() {
+      qrPopup.style.opacity = '0';
+      qrPopup.style.visibility = 'hidden';
+      qrPopup.style.transform = 'translateY(-10px) scale(0.95)';
+      qrPopup.style.pointerEvents = 'none';
+      
+      // 移除动画类
+      qrPopup.classList.remove('qr-popup--active');
+    }
+
+    // 移动端触摸支持
+    let touchStartTime = 0;
+    qrTrigger.addEventListener('touchstart', (e) => {
+      touchStartTime = Date.now();
+    });
+
+    qrTrigger.addEventListener('touchend', (e) => {
+      const touchDuration = Date.now() - touchStartTime;
+      if (touchDuration < 500) { // 短按视为点击
+        e.preventDefault();
+        const isVisible = qrPopup.style.opacity === '1';
+        if (isVisible) {
+          hideQRPopup();
+        } else {
+          showQRPopup();
+        }
+      }
+    });
+  }
+
+  // 初始化二维码功能
+  initQRCode();
 });

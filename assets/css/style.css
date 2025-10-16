@@ -80,8 +80,11 @@ a:focus-visible {
   top: 0;
   z-index: 20;
   backdrop-filter: blur(15px);
-  background: rgba(247, 242, 234, 0.88);
+  background: 
+    linear-gradient(135deg, rgba(200, 99, 58, 0.85), rgba(139, 115, 85, 0.75)),
+    url('./assets/images/richu.jpg') center/cover no-repeat;
   border-bottom: 1px solid rgba(139, 115, 85, 0.25);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
 
 .site-header .container {
@@ -100,20 +103,22 @@ a:focus-visible {
   display: inline-flex;
   align-items: center;
   gap: calc(var(--space-unit) * 3);
-  color: var(--color-text);
+  color: rgba(255, 255, 255, 0.95);
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 .brand__logo {
   width: 44px;
   height: 44px;
   border-radius: 50%;
-  background: linear-gradient(145deg, #f5c98b, #b7623c);
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.85));
   display: grid;
   place-items: center;
-  color: #fffdf7;
+  color: var(--color-primary);
   font-size: 1.7rem;
   font-weight: 700;
-  box-shadow: 0 14px 24px rgba(199, 99, 58, 0.35);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+  border: 2px solid rgba(255, 255, 255, 0.3);
   animation: logo-pulse 2.5s ease-in-out infinite;
 }
 
@@ -170,13 +175,14 @@ a:focus-visible {
 }
 
 .site-nav a {
-  color: var(--color-text);
+  color: rgba(255, 255, 255, 0.95);
   font-weight: 500;
   letter-spacing: 0.08em;
   font-size: 0.88rem;
   position: relative;
   padding-bottom: calc(var(--space-unit) * 1.5);
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 .nav-label {
@@ -193,9 +199,10 @@ a:focus-visible {
   font-size: 0.68rem;
   font-weight: 400;
   letter-spacing: 0.12em;
-  color: var(--color-muted);
+  color: rgba(255, 255, 255, 0.8);
   text-transform: uppercase;
-  opacity: 0.75;
+  opacity: 0.9;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
   transition: all 0.35s ease;
   font-style: italic;
 }
@@ -215,15 +222,17 @@ a:focus-visible {
 
 .site-nav a:hover,
 .site-nav a:focus-visible {
-  color: var(--color-primary);
+  color: rgba(255, 255, 255, 1);
   transform: translateY(-2px);
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
 }
 
 .site-nav a:hover .nav-label small,
 .site-nav a:focus-visible .nav-label small {
-  color: var(--color-primary-soft);
+  color: rgba(255, 255, 255, 1);
   opacity: 1;
   transform: scale(1.05);
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
 }
 
 .site-nav a:hover::after,
@@ -243,6 +252,151 @@ a:focus-visible {
 
 .site-nav a.btn:hover {
   transform: translateY(-4px);
+}
+
+/* QR Code Icon */
+.qr-icon {
+  position: relative;
+  margin-left: calc(var(--space-unit) * 3);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: calc(var(--space-unit) * 1);
+}
+
+.qr-icon small {
+  font-size: 0.6rem;
+  color: rgba(255, 255, 255, 0.9);
+  font-weight: 500;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  letter-spacing: 0.05em;
+}
+
+.qr-trigger {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.9);
+  color: var(--color-primary);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.qr-trigger:hover {
+  background: var(--color-primary);
+  color: #fff;
+  transform: scale(1.1);
+  box-shadow: 0 4px 12px rgba(200, 99, 58, 0.3);
+}
+
+.qr-trigger svg {
+  transition: transform 0.3s ease;
+}
+
+.qr-trigger:hover svg {
+  transform: rotate(5deg);
+}
+
+/* QR Popup */
+.qr-popup {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  margin-top: calc(var(--space-unit) * 2);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px) scale(0.95);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 1000;
+  pointer-events: none;
+}
+
+.qr-icon:hover .qr-popup {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0) scale(1);
+  pointer-events: auto;
+}
+
+.qr-popup__content {
+  background: var(--color-paper);
+  border-radius: var(--radius-md);
+  padding: calc(var(--space-unit) * 4);
+  box-shadow: 
+    0 20px 40px rgba(0, 0, 0, 0.15),
+    0 0 0 1px rgba(200, 99, 58, 0.1);
+  border: 1px solid rgba(200, 99, 58, 0.15);
+  text-align: center;
+  min-width: 200px;
+  position: relative;
+}
+
+.qr-popup__content::before {
+  content: '';
+  position: absolute;
+  top: -8px;
+  right: 20px;
+  width: 16px;
+  height: 16px;
+  background: var(--color-paper);
+  border: 1px solid rgba(200, 99, 58, 0.15);
+  border-bottom: none;
+  border-right: none;
+  transform: rotate(45deg);
+}
+
+.qr-popup__content img {
+  width: 150px;
+  height: 150px;
+  border-radius: var(--radius-sm);
+  margin-bottom: calc(var(--space-unit) * 2);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.qr-popup__content p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--color-primary);
+  font-weight: 500;
+  letter-spacing: 0.05em;
+}
+
+/* QR Popup Animation */
+.qr-popup--active .qr-popup__content {
+  animation: qrPopupBounce 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+@keyframes qrPopupBounce {
+  0% {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* QR Icon Pulse Animation */
+.qr-trigger {
+  animation: qrIconPulse 3s ease-in-out infinite;
+}
+
+@keyframes qrIconPulse {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(200, 99, 58, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 0 8px rgba(200, 99, 58, 0);
+  }
 }
 
 /* Hero */
@@ -1652,6 +1806,46 @@ a:focus-visible {
   .site-nav a::after {
     left: 0;
     transform: translateX(0);
+  }
+
+  .qr-icon {
+    margin-left: 0;
+    margin-top: calc(var(--space-unit) * 2);
+  }
+
+  .qr-icon small {
+    font-size: 0.55rem;
+  }
+
+  .qr-trigger {
+    width: 36px;
+    height: 36px;
+  }
+
+  .qr-popup {
+    right: auto;
+    left: 50%;
+    transform: translateX(-50%) translateY(-10px) scale(0.95);
+  }
+
+  .qr-icon:hover .qr-popup {
+    transform: translateX(-50%) translateY(0) scale(1);
+  }
+
+  .qr-popup__content {
+    min-width: 180px;
+    padding: calc(var(--space-unit) * 3);
+  }
+
+  .qr-popup__content img {
+    width: 120px;
+    height: 120px;
+  }
+
+  .qr-popup__content::before {
+    right: auto;
+    left: 50%;
+    transform: translateX(-50%) rotate(45deg);
   }
 
   .hero__lead {
