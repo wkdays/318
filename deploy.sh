@@ -70,8 +70,29 @@ create_directories() {
 # 构建镜像
 build_image() {
     print_message $BLUE "开始构建 Docker 镜像..."
-    docker-compose -f $COMPOSE_FILE build --no-cache
-    print_message $GREEN "✓ 镜像构建完成"
+    
+    # 清理Docker缓存
+    print_message $BLUE "清理Docker构建缓存..."
+    docker builder prune -f 2>/dev/null || true
+    
+    # 构建镜像
+    if docker-compose -f $COMPOSE_FILE build --no-cache --pull; then
+        print_message $GREEN "✓ 镜像构建完成"
+    else
+        print_message $RED "❌ 镜像构建失败"
+        print_message $YELLOW "尝试修复构建问题..."
+        
+        # 清理相关镜像
+        docker rmi $(docker images | grep "xinduqiao-travel" | awk '{print $3}') 2>/dev/null || true
+        
+        # 重新构建
+        if docker-compose -f $COMPOSE_FILE build --no-cache --pull; then
+            print_message $GREEN "✓ 修复后镜像构建完成"
+        else
+            print_message $RED "❌ 镜像构建仍然失败，请检查Dockerfile"
+            return 1
+        fi
+    fi
 }
 
 # 启动服务

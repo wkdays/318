@@ -5,10 +5,6 @@ FROM nginx:alpine
 LABEL maintainer="新都桥旅行 <contact@xinduqiao.com>"
 LABEL description="新都桥旅行静态网站 - 高原秘境旅行指南"
 
-# 创建非root用户
-RUN addgroup -g 1001 -S nginx && \
-    adduser -S -D -H -u 1001 -h /var/cache/nginx -s /sbin/nologin -G nginx -g nginx nginx
-
 # 安装必要的工具
 RUN apk add --no-cache \
     curl \
@@ -19,7 +15,7 @@ RUN apk add --no-cache \
 ENV TZ=Asia/Shanghai
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
-# 创建必要的目录
+# 创建必要的目录并设置权限
 RUN mkdir -p /var/cache/nginx/client_temp \
     /var/cache/nginx/proxy_temp \
     /var/cache/nginx/fastcgi_temp \
@@ -27,7 +23,8 @@ RUN mkdir -p /var/cache/nginx/client_temp \
     /var/cache/nginx/scgi_temp \
     /var/log/nginx \
     /etc/nginx/conf.d \
-    /usr/share/nginx/html
+    /usr/share/nginx/html && \
+    chown -R nginx:nginx /var/cache/nginx /var/log/nginx /usr/share/nginx/html
 
 # 复制网站文件到容器
 COPY . /usr/share/nginx/html/
@@ -40,12 +37,11 @@ COPY default.conf /etc/nginx/conf.d/default.conf
 RUN chown -R nginx:nginx /usr/share/nginx/html \
     /var/cache/nginx \
     /var/log/nginx \
-    /etc/nginx/conf.d \
-    && chmod -R 755 /usr/share/nginx/html
+    /etc/nginx/conf.d
 
 # 创建健康检查脚本
 RUN echo '#!/bin/sh' > /usr/local/bin/healthcheck.sh && \
-    echo 'curl -f http://localhost/ || exit 1' >> /usr/local/bin/healthcheck.sh && \
+    echo 'curl -f http://localhost/health || exit 1' >> /usr/local/bin/healthcheck.sh && \
     chmod +x /usr/local/bin/healthcheck.sh
 
 # 暴露端口
