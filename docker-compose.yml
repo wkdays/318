@@ -1,5 +1,3 @@
-version: '3.8'
-
 services:
   # 新都桥旅行网站服务
   xinduqiao-travel:
