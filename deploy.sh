@@ -13,7 +13,7 @@ BLUE='\033[0;34m'
 NC='\033[0m' # No Color
 
 # 默认配置
-COMPOSE_FILE="docker-compose.yml"
+COMPOSE_FILE="$COMPOSE_CMD.yml"
 SERVICE_NAME="xinduqiao-travel"
 PROJECT_NAME="xinduqiao-travel"
 
@@ -28,20 +28,30 @@ print_message() {
 check_docker() {
     if ! command -v docker &> /dev/null; then
         print_message $RED "错误: Docker 未安装，请先安装 Docker"
+        print_message $YELLOW "安装命令:"
+        print_message $YELLOW "  Ubuntu/Debian: sudo apt-get update && sudo apt-get install docker.io $COMPOSE_CMD-plugin"
+        print_message $YELLOW "  CentOS/RHEL: sudo yum install docker $COMPOSE_CMD-plugin"
+        print_message $YELLOW "  macOS: brew install docker $COMPOSE_CMD"
         exit 1
     fi
     
-    if ! command -v docker-compose &> /dev/null; then
-        print_message $RED "错误: Docker Compose 未安装，请先安装 Docker Compose"
+    # 检查Docker Compose是否可用
+    if docker compose version &> /dev/null; then
+        COMPOSE_CMD="docker compose"
+    elif command -v $COMPOSE_CMD &> /dev/null; then
+        COMPOSE_CMD="$COMPOSE_CMD"
+    else
+        print_message $RED "错误: Docker Compose 未安装"
+        print_message $YELLOW "请安装Docker Compose插件或独立版本"
         exit 1
     fi
     
-    print_message $GREEN "✓ Docker 和 Docker Compose 已安装"
+    print_message $GREEN "✓ 使用命令: $COMPOSE_CMD"
 }
 
 # 检查必要文件
 check_files() {
-    local required_files=("Dockerfile" "docker-compose.yml" "nginx.conf" "default.conf")
+    local required_files=("Dockerfile" "$COMPOSE_CMD.yml" "nginx.conf" "default.conf")
     
     for file in "${required_files[@]}"; do
         if [[ ! -f "$file" ]]; then
@@ -76,7 +86,7 @@ build_image() {
     docker builder prune -f 2>/dev/null || true
     
     # 构建镜像
-    if docker-compose -f $COMPOSE_FILE build --no-cache --pull; then
+    if $COMPOSE_CMD -f $COMPOSE_FILE build --no-cache --pull; then
         print_message $GREEN "✓ 镜像构建完成"
     else
         print_message $RED "❌ 镜像构建失败"
@@ -86,7 +96,7 @@ build_image() {
         docker rmi $(docker images | grep "xinduqiao-travel" | awk '{print $3}') 2>/dev/null || true
         
         # 重新构建
-        if docker-compose -f $COMPOSE_FILE build --no-cache --pull; then
+        if $COMPOSE_CMD -f $COMPOSE_FILE build --no-cache --pull; then
             print_message $GREEN "✓ 修复后镜像构建完成"
         else
             print_message $RED "❌ 镜像构建仍然失败，请检查Dockerfile"
@@ -101,10 +111,10 @@ start_services() {
     
     if [[ -n "$profile" ]]; then
         print_message $BLUE "启动服务 (profile: $profile)..."
-        docker-compose -f $COMPOSE_FILE --profile $profile up -d
+        $COMPOSE_CMD -f $COMPOSE_FILE --profile $profile up -d
     else
         print_message $BLUE "启动基础服务..."
-        docker-compose -f $COMPOSE_FILE up -d
+        $COMPOSE_CMD -f $COMPOSE_FILE up -d
     fi
     
     print_message $GREEN "✓ 服务启动完成"
@@ -113,21 +123,21 @@ start_services() {
 # 停止服务
 stop_services() {
     print_message $BLUE "停止服务..."
-    docker-compose -f $COMPOSE_FILE down
+    $COMPOSE_CMD -f $COMPOSE_FILE down
     print_message $GREEN "✓ 服务已停止"
 }
 
 # 重启服务
 restart_services() {
     print_message $BLUE "重启服务..."
-    docker-compose -f $COMPOSE_FILE restart
+    $COMPOSE_CMD -f $COMPOSE_FILE restart
     print_message $GREEN "✓ 服务已重启"
 }
 
 # 查看服务状态
 show_status() {
     print_message $BLUE "服务状态:"
-    docker-compose -f $COMPOSE_FILE ps
+    $COMPOSE_CMD -f $COMPOSE_FILE ps
     
     print_message $BLUE "\n容器资源使用情况:"
     docker stats --no-stream --format "table {{.Container}}\t{{.CPUPerc}}\t{{.MemUsage}}\t{{.NetIO}}\t{{.BlockIO}}"
@@ -137,7 +147,7 @@ show_status() {
 show_logs() {
     local service=${1:-$SERVICE_NAME}
     print_message $BLUE "显示 $service 服务日志 (按 Ctrl+C 退出):"
-    docker-compose -f $COMPOSE_FILE logs -f $service
+    $COMPOSE_CMD -f $COMPOSE_FILE logs -f $service
 }
 
 # 清理资源
