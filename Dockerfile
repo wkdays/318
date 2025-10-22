@@ -23,8 +23,7 @@ RUN mkdir -p /var/cache/nginx/client_temp \
     /var/cache/nginx/scgi_temp \
     /var/log/nginx \
     /etc/nginx/conf.d \
-    /usr/share/nginx/html && \
-    chown -R nginx:nginx /var/cache/nginx /var/log/nginx /usr/share/nginx/html
+    /usr/share/nginx/html
 
 # 复制网站文件到容器
 COPY . /usr/share/nginx/html/
@@ -33,16 +32,21 @@ COPY . /usr/share/nginx/html/
 COPY nginx.conf /etc/nginx/nginx.conf
 COPY default.conf /etc/nginx/conf.d/default.conf
 
-# 设置正确的文件权限
+# 设置正确的文件权限和所有权
 RUN chown -R nginx:nginx /usr/share/nginx/html \
     /var/cache/nginx \
     /var/log/nginx \
-    /etc/nginx/conf.d
+    /etc/nginx/conf.d && \
+    chmod -R 755 /usr/share/nginx/html && \
+    chmod -R 755 /var/cache/nginx && \
+    chmod -R 755 /var/log/nginx && \
+    chmod -R 644 /etc/nginx/conf.d/*.conf
 
 # 创建健康检查脚本
 RUN echo '#!/bin/sh' > /usr/local/bin/healthcheck.sh && \
     echo 'curl -f http://localhost/health || exit 1' >> /usr/local/bin/healthcheck.sh && \
-    chmod +x /usr/local/bin/healthcheck.sh
+    chmod +x /usr/local/bin/healthcheck.sh && \
+    chown nginx:nginx /usr/local/bin/healthcheck.sh
 
 # 暴露端口
 EXPOSE 80
@@ -51,8 +55,5 @@ EXPOSE 80
 HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
     CMD /usr/local/bin/healthcheck.sh
 
-# 切换到非root用户
-USER nginx
-
-# 启动Nginx
+# 启动Nginx (以root用户运行，但nginx进程会以nginx用户运行)
 CMD ["nginx", "-g", "daemon off;"]
