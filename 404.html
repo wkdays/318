@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>页面未找到 - 新都桥旅行</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+  <style>
+    .error-page { text-align: center; padding: 6rem 1rem; max-width: 600px; margin: 0 auto; }
+    .error-page h1 { font-size: 5rem; margin: 0; color: #c8633a; }
+    .error-page p { font-size: 1.1rem; color: #666; margin: 1rem 0 2rem; }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <a class="brand" href="index.html" aria-label="返回主页">
+        <span class="brand__logo" aria-hidden="true">ཨོཾ</span>
+        <span class="brand__text">
+          <strong>新都桥旅行</strong>
+          <small>藏地旅行定制</small>
+        </span>
+      </a>
+    </div>
+  </header>
+  <main class="error-page">
+    <h1>404</h1>
+    <p>这片高原上还没有这条路<br>不如回主页看看？</p>
+    <a href="index.html" class="btn btn--primary">返回首页</a>
+  </main>
+  <footer class="site-footer">
+    <div class="container">
+      <p class="footer__copyright">© <span id="year"></span> 新都桥旅行. 保留所有权利。</p>
+    </div>
+  </footer>
+  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+</html>
