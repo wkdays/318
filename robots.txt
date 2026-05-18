@@ -1,46 +1,33 @@
 # 新都桥旅行网站 robots.txt
-# 网站: https://318.yongli.wang
-# 最后更新: 2024-12-19
+# 网站: https://318.maierjia.com
+# 最后更新: 2026-05-18
 
-# 允许所有搜索引擎爬虫访问
+# 允许所有搜索引擎爬虫
 User-agent: *
 Allow: /
+Crawl-delay: 1
 
-# 允许访问所有静态资源
-Allow: /assets/
-Allow: /assets/css/
-Allow: /assets/js/
-Allow: /assets/images/
+# AI 训练爬虫 — 禁止抓取用于训练
+User-agent: GPTBot
+Disallow: /
 
-# 禁止访问敏感目录
-Disallow: /logs/
-Disallow: /config/
-Disallow: /scripts/
-Disallow: /traefik/
-Disallow: /.env
-Disallow: /docker-compose*.yml
-Disallow: /Dockerfile
-Disallow: /Makefile
-Disallow: /deploy.sh
+User-agent: Google-Extended
+Disallow: /
 
-# 禁止访问备份文件
-Disallow: /*.bak
-Disallow: /*.backup
-Disallow: /*.old
-Disallow: /*.tmp
+User-agent: CCBot
+Disallow: /
 
-# 禁止访问隐藏文件
-Disallow: /.*
-Disallow: /.git/
-Disallow: /.gitignore
+# 允许 AI 搜索/引用爬虫（用于在 AI 回答中被引用）
+User-agent: ChatGPT-User
+Allow: /
 
-# 允许访问重要页面
-Allow: /index.html
-Allow: /sitemap.xml
-Allow: /robots.txt
-Allow: /favicon.ico
+User-agent: PerplexityBot
+Allow: /
 
-# 针对特定搜索引擎的优化
+User-agent: Claude-Web
+Allow: /
+
+# 搜索引擎
 User-agent: Googlebot
 Allow: /
 Crawl-delay: 1
@@ -63,8 +50,6 @@ Disallow: /
 User-agent: DotBot
 Disallow: /
 
-# 网站地图位置
-Sitemap: https://318.yongli.wang/sitemap.xml
-
-# 主机信息
-Host: 318.yongli.wang
+# 网站地图
+Sitemap: https://318.maierjia.com/sitemap.xml
+Host: 318.maierjia.com

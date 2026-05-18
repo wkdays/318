@@ -1,0 +1,112 @@
+{
+  "site": "318.yongli.wang",
+  "domain": "新都桥旅行 — 318国道川藏线旅行指南",
+  "auditDate": "2026-05-18",
+  "overallScore": 58,
+  "metrics": {
+    "aiCrawlerAccess": {
+      "score": 70,
+      "issues": [
+        "GPTBot 没有专用规则，默认被 Allow",
+        "Google-Extended 没有专用规则",
+        "CCBot, Claude-Web, OAI-SearchBot, PerplexityBot 均无限制"
+      ],
+      "details": "robots.txt 允许所有合法爬虫。AhrefsBot/MJ12bot/DotBot 已被禁止，但 AI 训练爬虫无任何治理。"
+    },
+    "semanticNoise": {
+      "score": 32,
+      "issues": [
+        "导航栏 SVG 图标 30+ 行",
+        "两个重复的 JSON-LD 块（TravelAgency + LocalBusiness）共 85 行",
+        "20+ meta 标签（三个搜索引擎的冗余额外声明）",
+        "45 个景点数据内联在 HTML 中（~120 行）",
+        "图片画廊、灯箱、轮播等交互标记遍布全文"
+      ],
+      "estimatedNoisePercent": 68,
+      "details": "index.html 共 ~1061 行 / 52.8KB，估计 68% 是非内容的模板标记。真正的中文旅行内容仅占 ~32%。LLM 需要大量噪音解析才能提取核心信息。"
+    },
+    "llmsTxt": {
+      "exists": false,
+      "score": 0,
+      "details": "根目录下没有 /llms.txt 文件。这是最关键的 GEO 缺失——没有为 LLM 提供清洁的结构化摘要。"
+    },
+    "structuredData": {
+      "score": 65,
+      "issues": [
+        "两个 JSON-LD 类型重叠（TravelAgency + LocalBusiness），部分数据重复",
+        "缺少 Hotel Schema（酒店是最核心的转化页面）",
+        "缺少 TouristAttraction Schema（45 个景点已有坐标数据）",
+        "缺少 FAQPage Schema",
+        "缺少 Restaurant Schema（美食章节）",
+        "缺少 Article Schema（about.html）",
+        "TravelAgency 中电话号码为占位符，LocalBusiness 中是真实号码——不一致"
+      ],
+      "details": "已有 JSON-LD 基础良好（GeoCoordinates, sameAs, aggregateRating），但网站覆盖了景点/酒店/美食/交通多个领域，每个领域都缺少专属 Schema 类型。"
+    },
+    "semanticHTML": {
+      "score": 85,
+      "issues": [
+        "部分卡片用了 div.card 而非 article",
+        "一些章节缺少 role/aria-label",
+        "美食卡片用了 div.food-card 而非 article"
+      ],
+      "details": "基础优秀：header/nav/main/footer 地标完整，h1→h2→h3 层级清晰，BEM 命名一致。少数 article 使用不一致。"
+    },
+    "metadata": {
+      "score": 80,
+      "issues": [
+        "Google/Bing/Baidu 验证码仍为占位符",
+        "OG/Twitter 图片指向外部 Unsplash（可靠性风险）",
+        "缺少 og:image:width, og:image:height, og:image:alt",
+        "copyright 年份在 meta 中硬编码为 2024"
+      ],
+      "details": "元数据覆盖面广（title, description, OG, Twitter Card, 多引擎验证, 地理标签），但存在占位符值和外部依赖风险。"
+    },
+    "mobileFriendliness": {
+      "score": 80,
+      "issues": [
+        "maximum-scale=1 阻止双指缩放——违反 WCAG 2.1",
+        "无 PWA manifest 或 service worker"
+      ],
+      "details": "viewport meta、触摸滑动、汉堡菜单均已实现，但 max-scale 限制是已知的无障碍失败点。"
+    },
+    "pageSize": {
+      "totalBytes": 121894,
+      "estimatedTokens": 14500,
+      "score": 55,
+      "details": "index.html(52.8KB) + style.css(50.5KB) + main.js(15.9KB) + about.html(2.7KB)。CSS 对单页站而言过于臃肿。"
+    }
+  },
+  "keyFindings": [
+    "【严重】无 /llms.txt——LLM 无法直接获取清洁摘要，必须从 68% 噪音的 HTML 中解析",
+    "【高】AI 爬虫治理缺失——GPTBot、Google-Extended、CCBot、Claude-Web 等无任何限制",
+    "【高】68% 语义噪音——LLM 需解析 36KB 脚手架代码才能提取 16KB 真正内容",
+    "【中】结构化数据不足——缺少 Hotel、TouristAttraction、FAQ、Restaurant、Article Schema",
+    "【中】CSS 50.5KB——对单页站可压缩 60%+",
+    "【低】元数据占位符未替换（验证码、copyright、OG 图外部依赖）"
+  ],
+  "recommendations": {
+    "critical": [
+      "创建 /llms.txt 为 LLM 提供清洁摘要",
+      "优化 robots.txt 明确治理 AI 爬虫",
+      "减少语义噪音——将内联 JSON 数据分离为外部文件"
+    ],
+    "important": [
+      "添加 Hotel Schema JSON-LD",
+      "添加 TouristAttraction Schema（45 个景点）",
+      "添加 FAQPage Schema（天气/海拔/路况等常见问题）",
+      "添加 Article Schema（about.html）",
+      "替换占位符验证码",
+      "移除 maximum-scale=1"
+    ],
+    "enhancement": [
+      "添加 og:image:width/height/alt",
+      "自托管 OG 图片",
+      "精简 CSS 至 <15KB",
+      "添加 BreadcrumbList Schema",
+      "添加 WebSite Schema (SearchAction)",
+      "添加 <meta name='llms-txt' content='...'> 标签"
+    ]
+  },
+  "llmsTxtDraft": "# 新都桥旅行 (Xinduqiao Travel)\n> 川藏线318国道旅行指南 · 高原秘境自驾旅行\n\n## 关于\n新都桥位于四川省甘孜藏族自治州，318国道沿线，海拔约3,300米。被称为\"摄影天堂\"，拥有贡嘎雪山、塔公草原、雅拉雪山等壮丽景观。\n\n## 核心业务\n- **品牌**：新都桥旅行\n- **网站**：https://318.yongli.wang\n- **域名**：318.yongli.wang\n- **联系电话**：+86 183 8367 1221 / +86 0836 282 5333\n- **酒店地址**：甘孜州康定市新都桥镇摄影天堂小镇4号地11幢\n\n## 内容章节\n\n### 1. 景点推荐 (Destinations)\n45+ 个景点，距离新都桥 0–305km 范围内，包括：\n- 塔公草原 & 塔公寺（33km, 45min）\n- 贡嘎山观景台（2.4km, 10min）\n- 雅拉雪山（30km, 45min）\n- 木雅圣地（30km, 45min）\n- 折多山垭口（43km, 1hr, 海拔4,298m）\n- 鱼子西星空营地（40km, 1hr, 海拔4,200m）\n- 冷嘎措（80km, 1.5hr, 海拔4,530m）\n- 甲根坝（41km, 50min）\n- 更多景点见完整版: [/llms-full.txt]\n\n### 2. 藏式美食 (Tibetan Cuisine)\n- 酥油茶 & 糌粑 DIY\n- 牦牛肉暖锅（冬季限定）\n- 酥油点心下午茶\n- 康巴风味宴\n\n### 3. 精品住宿 (Accommodation)\n- **柏曼酒店（康定新都桥摄影天堂小镇店）**\n  - 开业: 2023年\n  - 客房: 100间（双床/大床/家庭房/观景房）\n  - 设施: 全屋智能、中央地暖、自有供氧设备\n  - 电话: +86 0836 282 5333\n  - 携程酒店ID: 112266802\n  - 景观: 贡嘎雪山、湖景草甸\n\n### 4. 定制服务 (Custom Services)\n- 摄影大师团（国家地理摄影师同行）\n- 高原健康管家（专业医生+随行护士）\n- 婚礼与旅拍（藏式仪式感）\n- 企业团建与亲子行程\n\n### 5. 路线探索 (Route Explorer)\n交互式路线图，按距离筛选景点，覆盖新都桥周边主要和小众景点。\n\n### 6. 交通攻略 (Transportation)\n- 出发地: 重庆、成都、康定、雅安\n- 3天行程: 集结→折多山轻徒步→深度游览\n- 车辆: 双驾驶、车载氧气、保温饮品\n\n### 7. 在线预订 (Booking)\n- 携程直订: 酒店ID 112266802\n- 顾问电话/微信: +86 183 8367 1221\n\n## 关键数据\n- 坐标: 30.0643°N, 101.4997°E\n- 海拔范围: 2,600m（雅江）~ 4,530m（冷嘎措）\n- 最佳季节: 9月–11月（秋色）/ 3月–5月（春景）\n- 紫外线: 强，建议 SPF50+\n- 穿着建议: 冲锋衣+抓绒（春秋），羽绒服（冬季）\n\n## 社交媒体\n- 微博: weibo.com/xinduqiaotravel\n- YouTube: @xinduqiaotravel\n- Instagram: @xinduqiaotravel\n\n## 完整内容\n详细景点列表、完整酒店介绍、所有联系方式和价格信息请参阅: [/llms-full.txt]"
+}
