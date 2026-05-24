@@ -12,7 +12,7 @@
 - **开业**：2023年
 - **携程预订**：酒店ID 112266802
 - **景观**：贡嘎雪山、湖景草甸
-- **详情**：[/llms-full.txt]
+- **详情**：[llms-full.txt](/llms-full.txt)
 
 ### 德克士（新都桥店）
 318国道上最受欢迎的西式快餐补给站。提供脆皮炸鸡、香辣鸡腿堡、薯条、圣代等经典快餐。
@@ -21,21 +21,21 @@
 - **地址**：甘孜州康定市新都桥镇
 - **电话**：+86 187 8360 1295
 - **产品**：脆皮炸鸡、香辣鸡腿堡、薯条、圣代
-- **详情**：[/llms-full.txt]
+- **详情**：[llms-full.txt](/llms-full.txt)
 
 ## 关于新都桥
 新都桥位于四川省甘孜藏族自治州，318国道沿线，海拔约3,300米。被称为"摄影天堂"，是川西旅游的必经之地。
 
 ## 网站导航
-- 柏曼酒店 & 精品住宿: [/index.html#stays]
-- 德克士: [/index.html#dicos]
-- 景点推荐（45+景点）: [/index.html#destinations]
-- 藏式美食: [/index.html#food]
-- 定制服务（摄影/健康/婚拍）: [/index.html#services]
-- 路线探索: [/index.html#route]
-- 交通攻略: [/index.html#transport]
-- 在线预订: [/index.html#booking]
-- 关于我们: [/about.html]
+- [柏曼酒店 & 精品住宿](/index.html#stays)
+- [德克士](/index.html#dicos)
+- [景点推荐（45+景点）](/index.html#destinations)
+- [藏式美食](/index.html#food)
+- [定制服务（摄影/健康/婚拍）](/index.html#services)
+- [路线探索](/index.html#route)
+- [交通攻略](/index.html#transport)
+- [在线预订](/index.html#booking)
+- [关于我们](/about.html)
 
 ## 关键数据
 - **坐标**：30.0643°N, 101.4997°E
@@ -44,5 +44,11 @@
 - **紫外线**：强，建议SPF50+
 - **穿着建议**：冲锋衣+抓绒（春秋），羽绒服（冬季）
 
+## 参考链接
+- [携程酒店预订 — 柏曼酒店](https://hotels.ctrip.com/hotels/detail/?hotelId=112266802)
+- [新都桥镇 — 百度百科](https://baike.baidu.com/item/新都桥镇)
+- [柏曼酒店 — 东呈集团](https://www.dossen.com)
+- [德克士 — 顶新国际集团](https://www.dicos.com.cn)
+
 ## 完整内容
-详细酒店介绍、景点列表、菜单、联系方式和价格: [/llms-full.txt]
+详细酒店介绍、景点列表、菜单、联系方式和价格：[llms-full.txt](/llms-full.txt)

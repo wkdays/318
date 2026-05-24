@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>新都桥旅行</title>
+    <link>https://318.maierjia.com/</link>
+    <description>川藏线318国道旅行指南 · 柏曼酒店 · 德克士 · 高原秘境自驾旅行</description>
+    <language>zh-CN</language>
+    <lastBuildDate>Mon, 18 May 2026 00:00:00 +0800</lastBuildDate>
+    <atom:link href="https://318.maierjia.com/rss.xml" rel="self" type="application/rss+xml"/>
+    <item>
+      <title>柏曼酒店（康定新都桥摄影天堂小镇店）— 2023年新开业</title>
+      <link>https://318.maierjia.com/#stays</link>
+      <description>全屋智能、中央地暖、自有供氧设备，100间客房含双床/大床/家庭房/观景房，前揽贡嘎雪山、后映湖景草甸。</description>
+      <guid isPermaLink="false">stays-2023</guid>
+      <pubDate>Mon, 18 May 2026 00:00:00 +0800</pubDate>
+    </item>
+    <item>
+      <title>德克士（新都桥店）— 318国道补给站</title>
+      <link>https://318.maierjia.com/#dicos</link>
+      <description>脆皮炸鸡、香辣鸡腿堡、薯条、圣代，营业时间08:00-22:00，位于新都桥镇中心。</description>
+      <guid isPermaLink="false">dicos-2023</guid>
+      <pubDate>Mon, 18 May 2026 00:00:00 +0800</pubDate>
+    </item>
+    <item>
+      <title>新都桥旅行指南 — 45+景点与交通攻略</title>
+      <link>https://318.maierjia.com/#destinations</link>
+      <description>塔公草原、贡嘎雪山观景台、鱼子西星空营地、甲根坝等精选景点，自驾/大巴/飞机多种交通方式。</description>
+      <guid isPermaLink="false">guide-2023</guid>
+      <pubDate>Mon, 18 May 2026 00:00:00 +0800</pubDate>
+    </item>
+  </channel>
+</rss>

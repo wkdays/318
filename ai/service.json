@@ -1,0 +1,46 @@
+{
+  "@context": "https://schema.org",
+  "@type": "TravelAgency",
+  "name": "新都桥旅行",
+  "url": "https://318.maierjia.com/",
+  "description": "川藏线318国道新都桥站旅行服务，提供酒店预订、行程规划、摄影向导、企业团建与主题婚礼定制。",
+  "availableLanguage": ["zh-CN", "en"],
+  "areaServed": {
+    "@type": "City",
+    "name": "康定市",
+    "containedInPlace": {
+      "@type": "State",
+      "name": "甘孜藏族自治州"
+    }
+  },
+  "serviceType": [
+    {
+      "@type": "Service",
+      "name": "酒店预订",
+      "url": "https://318.maierjia.com/#booking",
+      "description": "柏曼酒店在线预订，支持携程平台。"
+    },
+    {
+      "@type": "Service",
+      "name": "行程规划",
+      "url": "https://318.maierjia.com/#services",
+      "description": "3日摄影/5日文化深度/7日定制线路。"
+    },
+    {
+      "@type": "Service",
+      "name": "摄影向导",
+      "url": "https://318.maierjia.com/#services",
+      "description": "星空摄影、无人机拍摄、旅拍相册。"
+    },
+    {
+      "@type": "Service",
+      "name": "交通接驳",
+      "url": "https://318.maierjia.com/#transport",
+      "description": "成都/重庆/康定出发接送，含车载供氧与领队。"
+    }
+  ],
+  "contactPoint": [
+    { "@type": "ContactPoint", "telephone": "+86-836-2825333", "contactType": "前台" },
+    { "@type": "ContactPoint", "telephone": "+86-177-3896-4860", "contactType": "酒店顾问" }
+  ]
+}

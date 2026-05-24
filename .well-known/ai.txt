@@ -1,0 +1,26 @@
+# AI Crawler Permissions for 318.maierjia.com
+# Updated: 2026-05-18
+
+# Allowed crawlers for citation/search (indexing permitted)
+ChatGPT-User: /
+PerplexityBot: /
+Claude-Web: /
+Claude-SearchBot: /
+Google-CloudVertexBot: /
+cohere-ai: /
+DuckAssistBot: /
+Applebot-Extended: /
+
+# Blocked crawlers for training (no indexing for model training)
+GPTBot: /
+Google-Extended: /
+CCBot: /
+
+# LLM content files
+llms.txt: https://318.maierjia.com/llms.txt
+llms-full.txt: https://318.maierjia.com/llms-full.txt
+
+# AI discovery endpoints
+summary: https://318.maierjia.com/ai/summary.json
+faq: https://318.maierjia.com/ai/faq.json
+service: https://318.maierjia.com/ai/service.json

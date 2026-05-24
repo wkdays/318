@@ -63,6 +63,8 @@
     <link rel="stylesheet" href="assets/css/style.css" />
     <link rel="icon" type="image/svg+xml" href="assets/images/logo.svg" />
     <link rel="apple-touch-icon" href="assets/images/logo.svg" />
+    <link rel="alternate" type="application/rss+xml" title="新都桥旅行" href="/rss.xml" />
+    <meta name="dateModified" content="2026-05-18" />
     <meta name="theme-color" content="#8B4513" />
     <meta name="msapplication-TileColor" content="#8B4513" />
     
@@ -293,6 +295,55 @@
     }
     </script>
 
+    <!-- WebSite + Organization 结构化数据 -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "新都桥旅行",
+      "url": "https://318.maierjia.com/",
+      "description": "新都桥旅行网：探索川藏线最美风景、藏式美食、精品民宿与交通攻略，在线预订安心旅程。",
+      "dateModified": "2026-05-18",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": {
+          "@type": "EntryPoint",
+          "urlTemplate": "https://318.maierjia.com/?q={search_term_string}"
+        },
+        "query-input": "required name=search_term_string"
+      }
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "新都桥旅行",
+      "url": "https://318.maierjia.com/",
+      "logo": "https://318.maierjia.com/assets/images/logo.svg",
+      "description": "新都桥旅行提供高原秘境行程规划、精品酒店预订与文化体验服务。",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "甘孜州康定市新都桥镇摄影天堂小镇4号地11幢",
+        "addressLocality": "康定市",
+        "addressRegion": "甘孜藏族自治州",
+        "addressCountry": "CN"
+      },
+      "contactPoint": [
+        { "@type": "ContactPoint", "telephone": "+86-836-2825333", "contactType": "前台", "areaServed": "CN", "availableLanguage": "zh-CN" },
+        { "@type": "ContactPoint", "telephone": "+86-177-3896-4860", "contactType": "酒店顾问", "areaServed": "CN", "availableLanguage": "zh-CN" },
+        { "@type": "ContactPoint", "telephone": "+86-183-8367-1221", "contactType": "微信/电话", "areaServed": "CN", "availableLanguage": "zh-CN" }
+      ],
+      "sameAs": [
+        "https://weibo.com/xinduqiaotravel",
+        "https://www.youtube.com/@xinduqiaotravel",
+        "https://www.instagram.com/xinduqiaotravel",
+        "https://baike.baidu.com/item/新都桥镇",
+        "https://www.wikidata.org/wiki/Q11127493"
+      ]
+    }
+    </script>
+
     <!-- LLMs.txt 发现标签 -->
     <meta name="llms-txt" content="https://318.maierjia.com/llms.txt" />
     
@@ -354,7 +405,8 @@
             <li><a href="#services"><span class="nav-label">定制服务<small>Services</small></span></a></li>
             <li><a href="#route"><span class="nav-label">路线探索<small>Route</small></span></a></li>
             <li><a href="#transport"><span class="nav-label">交通攻略<small>Transport</small></span></a></li>
-            <li><a href="#contact"><span class="nav-label">联系我们<small>Contact</small></span></a></li>            
+            <li><a href="#contact"><span class="nav-label">联系我们<small>Contact</small></span></a></li>
+            <li><a href="about.html"><span class="nav-label">关于我们<small>About</small></span></a></li>
             <li class="qr-icon">
               <span class="qr-trigger" title="扫码关注德克士">
                 <svg width="25" height="25" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">

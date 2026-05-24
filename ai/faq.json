@@ -1,0 +1,70 @@
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "柏曼酒店新都桥店在哪里？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "甘孜州康定市新都桥镇摄影天堂小镇4号地11幢，国道318线旁。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "柏曼酒店有什么设施？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "全屋智能、中央地暖、自有供氧设备，100间客房含双床/大床/家庭房/观景房。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "新都桥有德克士吗？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "是的，德克士（新都桥店）位于甘孜州康定市新都桥镇，提供炸鸡、汉堡等西式快餐。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "新都桥最佳旅行时间是什么时候？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "9月-11月（秋色）和3月-5月（春景）是最佳旅行季节。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "新都桥海拔多少？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "约3300米，属于高海拔地区，建议注意高原反应。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "如何预订柏曼酒店？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "可通过携程APP搜索酒店ID 112266802预订，或拨打前台电话+86 0836 282 5333 / +86 177 3896 4860 / +86 183 8367 1221。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "新都桥怎么去？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "成都出发自驾经雅康高速约6-7小时；或成都茶店子客运站乘大巴至康定再转车；或飞抵康定机场（40分钟）再乘车1小时。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "新都桥有什么特色美食？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "藏式牦牛肉汤锅、酥油茶、糌粑、青稞饼，以及德克士快餐。"
+      }
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "新都桥旅行",
+  "url": "https://318.maierjia.com/",
+  "description": "新都桥旅行网：川藏线318国道旅行指南，提供柏曼酒店预订、德克士快餐、景点攻略、交通信息与定制服务。位于四川省甘孜藏族自治州康定市新都桥镇，海拔约3300米。",
+  "language": "zh-CN",
+  "locale": "zh_CN",
+  "topics": ["新都桥旅游", "川藏线", "318国道", "柏曼酒店", "德克士", "高原旅行", "摄影天堂"],
+  "lastUpdated": "2026-05-18",
+  "sections": [
+    {
+      "title": "柏曼酒店（康定新都桥摄影天堂小镇店）",
+      "url": "https://318.maierjia.com/#stays",
+      "description": "2023年开业，100间客房，全屋智能、中央地暖、供氧设备，贡嘎雪山景观。"
+    },
+    {
+      "title": "德克士（新都桥店）",
+      "url": "https://318.maierjia.com/#dicos",
+      "description": "西式快餐补给站，脆皮炸鸡、香辣鸡腿堡，营业时间08:00-22:00。"
+    },
+    {
+      "title": "景点推荐",
+      "url": "https://318.maierjia.com/#destinations",
+      "description": "新都桥周边45+景点，涵盖塔公草原、贡嘎雪山观景台、鱼子西星空营地等。"
+    },
+    {
+      "title": "交通攻略",
+      "url": "https://318.maierjia.com/#transport",
+      "description": "成都出发自驾约6-7小时，大巴/飞机多种交通方式。"
+    }
+  ]
+}
